@@ -1,5 +1,5 @@
 import { sylDisplay } from "./transliteration.js";
-import { KB_ROWS } from "./keyboard-layout.js";
+import { KB_ROWS, VOWEL_ROW_INDEX, CONJUNCT_ROW_INDEX } from "./keyboard-layout.js";
 import { WORD_LENGTH, MAX_GUESSES } from "./game.js";
 
 // ── DOM helpers ───────────────────────────────────────────────
@@ -120,7 +120,12 @@ export function buildKeyboard(onKey) {
   kb.innerHTML = "";
 
   KB_ROWS.forEach((row, ri) => {
-    if (ri === KB_ROWS.length - 1) {
+    if (ri === CONJUNCT_ROW_INDEX) {
+      const lbl = el("div", "kb-section-label");
+      lbl.textContent = "Conjuncts — संयुक्त";
+      kb.appendChild(lbl);
+    }
+    if (ri === VOWEL_ROW_INDEX) {
       const lbl = el("div", "kb-section-label");
       lbl.textContent = "Vowels / Mātrās";
       kb.appendChild(lbl);
@@ -128,7 +133,8 @@ export function buildKeyboard(onKey) {
 
     const div = el("div", "kb-row");
     row.forEach(({ type, dev, rom }) => {
-      const btn      = el("button", "key" + (type === "vowel" ? " matra-key" : ""));
+      const isConjunct = ri === CONJUNCT_ROW_INDEX && type === "cons";
+      const btn      = el("button", "key" + (type === "vowel" ? " matra-key" : "") + (isConjunct ? " conjunct-key" : ""));
       btn.dataset.key  = dev;
       btn.dataset.type = type;
 

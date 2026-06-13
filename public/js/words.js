@@ -43,4 +43,45 @@ export const WORD_LIST = [
   { letters: [syl("म"), syl("ह","\u093E"), syl("व"), syl("न"), syl("म")],            translit: "mahāvanam",       meaning: "great forest" },
   { letters: [syl("द","\u0940"), syl("प"), syl("क"), syl("ल"), syl("म")],            translit: "dīpakalam",       meaning: "lamp art" },
   { letters: [syl("व"), syl("न"), syl("द"), syl("व"), syl("त")],                     translit: "vanadavata",      meaning: "forest deity" },
+
+  // ── Words with conjunct consonants ───────────────────────────
+  // V = virama \u094D
+
+  // क्ष (kSh) — kṣetra: field/domain
+  { letters: [syl("क\u094Dष"), syl("त"), syl("र"), syl("य"), syl("म")],            translit: "kṣetrayam",       meaning: "of the field" },
+  // क्ष + mātrā example: kṣama = forgiveness
+  { letters: [syl("क\u094Dष"), syl("म"), syl("व"),syl("र"), syl("त")],             translit: "kṣamavrata",      meaning: "vow of patience" },
+
+  // त्र (tr) — traya = triad
+  { letters: [syl("त\u094Dर"), syl("य"), syl("न"), syl("म"), syl("व")],            translit: "trayanamava",     meaning: "triad homage" },
+  // त्र in mātra: trāṇa = protection
+  { letters: [syl("त\u094Dर","\u093E"), syl("ण"), syl("म"), syl("य"), syl("न")],   translit: "trāṇamayana",     meaning: "path of protection" },
+
+  // ज्ञ (jn) — jñāna = knowledge
+  { letters: [syl("ज\u094Dञ","\u093E"), syl("न"), syl("य"), syl("ग"), syl("म")],   translit: "jñānayogam",      meaning: "path of knowledge" },
+  // ज्ञ plain: jñāta = known
+  { letters: [syl("ज\u094Dञ"),syl("त"),syl("व"),syl("र"),syl("न")],                translit: "jñatavarna",      meaning: "of known colour" },
+
+  // श्र (shr) — śraddhā = faith
+  { letters: [syl("श\u094Dर"), syl("द"), syl("ध"), syl("व"), syl("न")],            translit: "śraddhāvana",     meaning: "forest of faith" },
+
+  // प्र (pr) — prakāśa = light/radiance
+  { letters: [syl("प\u094Dर"), syl("क"),syl("श"), syl("म"), syl("न")],             translit: "prakāśamana",     meaning: "shining mind" },
+  // प्र + ā: prāṇa = breath/life-force
+  { letters: [syl("प\u094Dर","\u093E"), syl("ण"), syl("म"), syl("य"), syl("न")],   translit: "prāṇamayana",     meaning: "breath-path" },
+
+  // द्व (dv) — dvāra = gate/door
+  { letters: [syl("द\u094Dव","\u093E"), syl("र"), syl("म"), syl("ग"), syl("न")],   translit: "dvāramagana",     meaning: "gateway song" },
+
+  // स्व (sv) — svarga = heaven
+  { letters: [syl("स\u094Dव"), syl("र"), syl("ग"), syl("म"), syl("न")],            translit: "svargamana",      meaning: "ascent to heaven" },
+
+  // स्त (st) — stava = hymn of praise
+  { letters: [syl("स\u094Dत"), syl("व"), syl("न"), syl("म"), syl("य")],            translit: "stavanaya",       meaning: "way of hymns" },
+
+  // त्व (tv) — tattvam = that-ness/essence
+  { letters: [syl("त\u094Dव"), syl("म"), syl("र"), syl("ग"), syl("न")],            translit: "tvamargana",      meaning: "search for self" },
+
+  // व्य (vy) — vyoma = sky/ether
+  { letters: [syl("व\u094Dय"), syl("ओ"), syl("म"), syl("त"), syl("ल")],           translit: "vyomātala",       meaning: "sky floor" },
 ];

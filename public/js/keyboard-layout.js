@@ -1,7 +1,9 @@
 // ── On-screen keyboard layout ─────────────────────────────────
 // type: "cons" | "vowel" | "action"
-// dev:  Devanagari display string
+// dev:  Devanagari display string  (used as the akshara base when tapped)
 // rom:  Roman hint shown beneath each key
+
+const V = "\u094D"; // virama
 
 export const KB_ROWS = [
   [
@@ -29,7 +31,25 @@ export const KB_ROWS = [
     { type:"cons", dev:"श", rom:"sh" }, { type:"cons", dev:"ष", rom:"Sh" },
     { type:"cons", dev:"ह", rom:"h"  }, { type:"cons", dev:"म्", rom:"M" },
   ],
-  // Vowel / mātrā row
+  // ── Common conjuncts ──────────────────────────────────────────
+  [
+    { type:"cons", dev:"क"+V+"ष", rom:"kSh" },  // क्ष
+    { type:"cons", dev:"त"+V+"र", rom:"tr"  },  // त्र
+    { type:"cons", dev:"ज"+V+"ञ", rom:"jn"  },  // ज्ञ
+    { type:"cons", dev:"श"+V+"र", rom:"shr" },  // श्र
+    { type:"cons", dev:"द"+V+"व", rom:"dv"  },  // द्व
+    { type:"cons", dev:"द"+V+"र", rom:"dr"  },  // द्र
+    { type:"cons", dev:"प"+V+"र", rom:"pr"  },  // प्र
+    { type:"cons", dev:"ब"+V+"र", rom:"br"  },  // ब्र
+    { type:"cons", dev:"ग"+V+"र", rom:"gr"  },  // ग्र
+    { type:"cons", dev:"स"+V+"त", rom:"st"  },  // स्त
+    { type:"cons", dev:"स"+V+"व", rom:"sv"  },  // स्व
+    { type:"cons", dev:"व"+V+"य", rom:"vy"  },  // व्य
+    { type:"cons", dev:"त"+V+"व", rom:"tv"  },  // त्व
+    { type:"cons", dev:"न"+V+"त", rom:"nt"  },  // न्त
+    { type:"cons", dev:"न"+V+"द", rom:"nd"  },  // न्द
+  ],
+  // ── Vowels / mātrās ───────────────────────────────────────────
   [
     { type:"vowel",  dev:"अ", rom:"a"  }, { type:"vowel",  dev:"आ", rom:"aa" },
     { type:"vowel",  dev:"इ", rom:"i"  }, { type:"vowel",  dev:"ई", rom:"ii" },
@@ -38,3 +58,8 @@ export const KB_ROWS = [
     { type:"action", dev:"DEL",   rom:"" },
   ],
 ];
+
+// The index of the vowel row (used by ui.js to insert the section label)
+export const VOWEL_ROW_INDEX = KB_ROWS.length - 1;
+// The index of the conjunct row
+export const CONJUNCT_ROW_INDEX = KB_ROWS.length - 2;

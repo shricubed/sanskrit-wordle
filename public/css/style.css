@@ -242,6 +242,8 @@ main {
 
 .key-devanagari { line-height: 1; }
 .key-roman { font-family: 'Cinzel', serif; font-size: 0.48rem; color: var(--text-muted); line-height: 1; }
+.key.conjunct-key .key-devanagari { font-size: 0.95rem; }
+.key.conjunct-key { min-width: 44px; }
 
 .key[data-state="correct"] { background: var(--correct); border-color: var(--correct-light); color: #fff; }
 .key[data-state="present"] { background: var(--present); border-color: var(--present-light); color: #fff; }
