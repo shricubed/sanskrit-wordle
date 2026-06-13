@@ -1,0 +1,14 @@
+{
+  "name": "shabd",
+  "version": "1.0.0",
+  "description": "शब्द — Sanskrit Wordle",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

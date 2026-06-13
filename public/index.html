@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>शब्द — Sanskrit Wordle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="top-border"></div>
+
+<header>
+  <div class="header-ornament">✦ देवनागरी ✦</div>
+  <h1>शब्द</h1>
+  <div class="subtitle">Sanskrit Word Game</div>
+  <div class="header-info">
+    <button class="icon-btn" id="help-btn" title="How to play">?</button>
+  </div>
+</header>
+
+<main>
+  <!-- Completed guess rows -->
+  <div id="history"></div>
+
+  <!-- Current guess input -->
+  <div id="input-area">
+    <div id="input-box" class="active">
+      <span id="input-placeholder">Type your guess…</span>
+      <span id="input-text"></span><span id="input-cursor"></span>
+      <span id="syl-counter">0/5</span>
+    </div>
+    <div id="submit-row">
+      <button class="submit-btn" id="btn-del">⌫ Del</button>
+      <button class="submit-btn" id="btn-enter">↵ Enter</button>
+    </div>
+  </div>
+
+  <div class="attempts-label" id="attempts-label"></div>
+  <div id="keyboard"></div>
+</main>
+
+<div id="toast"></div>
+
+<!-- Help Modal -->
+<div class="modal-overlay" id="help-modal">
+  <div class="modal">
+    <button class="modal-close" id="help-close">✕</button>
+    <h2>How to Play</h2>
+    <div class="modal-section">
+      <p>Guess the hidden Sanskrit word in <strong>6 tries</strong>. Type 5 <em>akshara</em> (syllables) into the input box, then press Enter.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-section">
+      <p><strong style="color:var(--text-primary)">Tile colours after each guess:</strong></p>
+      <div class="example-row">
+        <div class="ex-tile c">मा</div><div class="ex-tile n">ल</div>
+        <div class="ex-tile n">क</div><div class="ex-tile n">व</div>
+        <div class="ex-tile n">न</div>
+      </div>
+      <p><span style="color:var(--correct-light)">Green</span> — correct syllable, correct position.</p>
+      <div class="example-row">
+        <div class="ex-tile n">व</div><div class="ex-tile p">न</div>
+        <div class="ex-tile n">म</div><div class="ex-tile n">ल</div>
+        <div class="ex-tile n">क</div>
+      </div>
+      <p><span style="color:var(--present-light)">Amber</span> — syllable is in the word but wrong position.</p>
+      <div class="example-row">
+        <div class="ex-tile n">ज</div><div class="ex-tile n">ग</div>
+        <div class="ex-tile a">टु</div><div class="ex-tile n">र</div>
+        <div class="ex-tile n">स</div>
+      </div>
+      <p><span style="color:var(--absent-text)">Dark</span> — syllable not in the word.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-section">
+      <p><strong style="color:var(--text-primary)">Syllables = consonant + vowel</strong></p>
+      <p>Type a consonant then a vowel — they merge into one akshara live in the box:</p>
+      <p style="font-family:'Cinzel',serif; font-size:0.8rem; line-height:2.1; color:var(--parchment-dark)">
+        m → <span style="font-family:'Noto Serif Devanagari',serif;font-size:1.05rem">म</span> (pending) &nbsp;→&nbsp;
+        m+a → <span style="font-family:'Noto Serif Devanagari',serif;font-size:1.05rem">म</span> &nbsp;|&nbsp;
+        m+aa → <span style="font-family:'Noto Serif Devanagari',serif;font-size:1.05rem">मा</span><br>
+        n+ii → <span style="font-family:'Noto Serif Devanagari',serif;font-size:1.05rem">नी</span> &nbsp;|&nbsp;
+        r+u → <span style="font-family:'Noto Serif Devanagari',serif;font-size:1.05rem">रु</span> &nbsp;|&nbsp;
+        h+aa → <span style="font-family:'Noto Serif Devanagari',serif;font-size:1.05rem">हा</span>
+      </p>
+      <p>The <span style="color:var(--gold-light)">gold text</span> in the box is the syllable still being formed.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-section">
+      <p><strong style="color:var(--text-primary)">Roman keyboard map:</strong></p>
+      <p style="font-family:'Cinzel',serif; font-size:0.77rem; line-height:2; color:var(--parchment-dark)">
+        k→क &nbsp; kh→ख &nbsp; g→ग &nbsp; gh→घ<br>
+        t→त &nbsp; th→थ &nbsp; d→द &nbsp; dh→ध<br>
+        T→ट &nbsp; Th→ठ &nbsp; D→ड &nbsp; Dh→ढ<br>
+        p→प &nbsp; ph→फ &nbsp; b→ब &nbsp; bh→भ<br>
+        ch→च &nbsp; j→ज &nbsp; sh→श &nbsp; s→स<br>
+        n→न &nbsp; N→ण &nbsp; m→म &nbsp; M→म्<br>
+        r→र &nbsp; l→ल &nbsp; v→व &nbsp; h→ह<br>
+        a→(short a) &nbsp; aa→ā &nbsp; i→i &nbsp; ii→ī &nbsp; u→u &nbsp; uu→ū
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- End Modal -->
+<div class="modal-overlay" id="end-modal">
+  <div class="modal">
+    <span class="result-emoji" id="result-emoji"></span>
+    <div class="result-title" id="result-title"></div>
+    <div class="answer-reveal">
+      <span class="answer-word" id="answer-word"></span>
+      <span class="answer-translit" id="answer-translit"></span>
+      <p class="answer-meaning" id="answer-meaning"></p>
+    </div>
+    <button class="play-again-btn" id="play-again-btn">▶ Play Again</button>
+  </div>
+</div>
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
